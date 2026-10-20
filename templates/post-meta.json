@@ -1,0 +1,97 @@
+{
+  "agentes-que-correm-sozinhos": {
+    "title": "Agentes que correm sozinhos: onde falham na realidade",
+    "excerpt": "Um agente que acerta em 90% dos passos falha a tarefa completa muito mais vezes do que 90%.",
+    "date": "2026-10-16",
+    "featured": true,
+    "post_tags": [
+      "agentes",
+      "fiabilidade",
+      "produção"
+    ]
+  },
+  "benchmark-nao-mede-o-teu-caso": {
+    "title": "O benchmark que os fornecedores citam não mede o que tu vais usar",
+    "excerpt": "O número que aparece na manchete foi medido num conjunto que provavelmente não se parece nada com o teu.",
+    "date": "2026-10-16",
+    "topics": [
+      "benchmarks",
+      "avaliação"
+    ],
+    "post_tags": [
+      "benchmarks",
+      "avaliação",
+      "medição"
+    ]
+  },
+  "custo-do-contexto-longo": {
+    "title": "O custo escondido do contexto longo",
+    "excerpt": "Um milhão de tokens de contexto soa a espaço ilimitado. Parece-se mais com uma factura por abrir.",
+    "date": "2026-10-16",
+    "topics": [
+      "contexto",
+      "custo"
+    ],
+    "post_tags": [
+      "contexto",
+      "custo",
+      "latência"
+    ]
+  },
+  "ferramentas-de-agente": {
+    "title": "Ferramentas de agente: o que sobrevive à segunda semana de uso",
+    "excerpt": "Na primeira semana, a ferramenta fez tudo o que prometia. Na segunda, descobriste o que ela faz quando a chamada falha.",
+    "date": "2026-10-16",
+    "topics": [
+      "ferramentas",
+      "agentes"
+    ],
+    "post_tags": [
+      "ferramentas",
+      "agentes",
+      "observabilidade"
+    ]
+  },
+  "modelos-abertos-vs-fronteira": {
+    "title": "Modelos abertos vs. modelos de fronteira: onde está a linha em Outubro de 2026",
+    "excerpt": "Os benchmarks dizem que a distância desapareceu. A factura diz outra coisa.",
+    "date": "2026-10-16",
+    "topics": [
+      "modelos",
+      "custo"
+    ],
+    "post_tags": [
+      "modelos",
+      "custo",
+      "produção"
+    ]
+  },
+  "soberania-de-dados": {
+    "title": "Soberania de dados: onde é que o teu prompt é processado",
+    "excerpt": "A discussão pública fica no \"RGPD sim ou não\". A pergunta que decide contratos é mais concreta.",
+    "date": "2026-10-16",
+    "topics": [
+      "regulação",
+      "dados"
+    ],
+    "post_tags": [
+      "regulação",
+      "dados",
+      "infraestrutura"
+    ]
+  },
+  "uma-chave-dezanove-fornecedores": {
+    "title": "Uma chave, dezanove fornecedores: o que a agregação de modelos resolve e o que esconde",
+    "excerpt": "Uma chave para dezanove fornecedores é uma linha de código. É também um único ponto onde tudo pode mudar de preço.",
+    "date": "2026-10-16",
+    "topics": [
+      "gateways",
+      "fornecedores"
+    ],
+    "post_tags": [
+      "gateways",
+      "fornecedores",
+      "dependência"
+    ]
+  }
+}
