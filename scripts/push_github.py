@@ -26,8 +26,10 @@ OWNER = "mhiroash"
 REMOTE_REPO = "builders-blog"
 BRANCH = "main"
 
-# Limite por lote. 80 KB deixa margem folgada para o JSON e para o ambiente.
-MAX_PAYLOAD = 80_000
+# Limite por lote. O servidor recusa lotes acima de ~64 KB ("pedido demasiado
+# grande"), e o kernel limita cada argumento a 128 KB (MAX_ARG_STRLEN). 30 KB
+# dá margem confortável aos dois e faz lotes pequenos mas seguros.
+MAX_PAYLOAD = 30_000
 
 # Ficheiros que interessam para recuperação (o dist/ é reconstruível pelo build.py).
 INCLUDE_DIRS = ["posts", "scripts", "templates", "assets", "docs", "seguranca", "reconstituicao"]
