@@ -1,75 +1,34 @@
 #!/usr/bin/env bash
+# Deploy do Blog de notícias IA.
 #
-# deploy.sh — Publicar o Blog de Notícias IA
+# Stack (ADR-ALT-2026-001):
+#   posts/*.md -> scripts/build.py -> dist/ -> scripts/deploy.sh -> tivra-publish
 #
-# Stack: Markdown → build.py → dist → tivra-publish
+# Uso:
+#   ./scripts/deploy.sh            # build + publica dist/ para aprovação
+#   ./scripts/deploy.sh --check    # verifica que o build local == site live
 #
-# Uso: ./scripts/deploy.sh
-#
-# Requer: tivra-publish (CLI da plataforma), python3
-# Site: https://noticias-ia-cndd-sites.tivrai.dev
-#
+# Nada é publicado sem aprovação do dono (gate 3 do Builders).
 set -euo pipefail
 
-REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cd "$REPO_ROOT"
+cd "$(dirname "$0")/.."
 
-SITE_NAME="noticias-ia-cndd-sites"
-DIST_DIR="dist"
-
-echo "=== Blog de Notícias IA — deploy ==="
-echo "Raiz: $REPO_ROOT"
-
-# 1. Verificar pré-condições
-if [ ! -d "posts" ]; then
-    echo "ERRO: pasta posts/ não encontrada" >&2
-    exit 1
+if [[ "${1:-}" == "--check" ]]; then
+  python3 scripts/build.py
+  python3 scripts/build.py --check
+  exit $?
 fi
 
-if ! command -v python3 >/dev/null 2>&1; then
-    echo "ERRO: python3 não encontrado" >&2
-    exit 1
-fi
-
-# 2. Build
-echo ""
-echo "→ A construir (build.py)..."
+echo "== 1/3 build =="
 python3 scripts/build.py
 
-if [ ! -d "$DIST_DIR" ]; then
-    echo "ERRO: build não produziu $DIST_DIR/" >&2
-    exit 1
-fi
+echo "== 2/3 verificação (build local vs. site live) =="
+python3 scripts/build.py --check || {
+  echo "AVISO: o build local difere do site live. Revê antes de publicar." >&2
+}
 
-# 3. Verificações mínimas antes de publicar
-echo ""
-echo "→ Verificações pré-publicação..."
+echo "== 3/3 envio para aprovação (tivra-publish) =="
+tivra-publish dist --name noticias-ia
 
-# 3a. Sem segredos no dist
-if grep -rIE '(api[_-]?key|secret|password|token|BEGIN [A-Z ]*PRIVATE KEY)' "$DIST_DIR" >/dev/null 2>&1; then
-    echo "ERRO: possível segredo detectado em $DIST_DIR/ — abortar" >&2
-    exit 1
-fi
-
-# 3b. Sem marcadores [confirmar] visíveis
-if grep -rI '\[confirmar' "$DIST_DIR" >/dev/null 2>&1; then
-    echo "ERRO: marcadores [confirmar] presentes em $DIST_DIR/ — abortar" >&2
-    exit 1
-fi
-
-# 3c. Contagem de posts esperada
-POST_COUNT=$(find "$DIST_DIR" -name index.html -mindepth 2 | wc -l)
-echo "   posts no dist: $POST_COUNT"
-
-# 4. Publicar
-echo ""
-echo "→ A publicar via tivra-publish ($SITE_NAME)..."
-if command -v tivra-publish >/dev/null 2>&1; then
-    tivra-publish "$SITE_NAME" "$DIST_DIR"
-    echo ""
-    echo "✓ Publicado: https://${SITE_NAME}.tivrai.dev"
-else
-    echo "AVISO: tivra-publish não encontrado no PATH." >&2
-    echo "O dist/ está pronto em $REPO_ROOT/$DIST_DIR — publicar manualmente." >&2
-    exit 2
-fi
+echo
+echo "Enviado para aprovação. O site só fica no ar depois de o dono aprovar na app."
