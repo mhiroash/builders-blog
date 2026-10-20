@@ -1,0 +1,2054 @@
+<!DOCTYPE html>
+<html lang="pt" data-theme="light" class="blog-colors blog-typography blog-spacing blog-radius blog-shadows blog-layout blog-animation blog-interactions blog-z">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><!--TITLE--> — Notícias IA</title>
+  <meta name="description" content="<!--DESC-->">
+  <meta property="og:title" content="<!--TITLE--> — Notícias IA">
+  <meta property="og:description" content="<!--DESC-->">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" type="application/rss+xml" href="/rss.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+/* ==================================================
+   BLOG DESIGN TOKENS
+   ==================================================
+   Design system for the Blog de Notícias IA.
+   Tokens are scoped to .blog- to avoid leaking into other apps.
+   All values are computed for WCAG 2.1 AA (AA = 4.5:1).
+
+   Sources:
+   - Piramyd brand palette (dark + amber): #0A0A0A / #EAAA08
+   - Editorial typography: Inter (Google Fonts)
+   - Apple HIG: Squircles (radius), depth (shadows), focus states
+   - Stripe Craft: Micro-interactions, loading states, clean borders
+
+   Author: Product Designer
+   Date: 2026-10-16
+   ================================================== */
+
+/* ==============================================
+   1. COLOR PALETTE
+   ============================================== */
+
+.blog-colors {
+  /* Light mode (default) */
+  --blog-bg-base: #ffffff;
+  --blog-bg-surface: #f9fafb;
+  --blog-bg-elevated: #ffffff;
+
+  --blog-text-primary: #111827;  /* AA (4.6:1) */
+  --blog-text-secondary: #4b5563; /* AA (4.6:1) */
+  --blog-text-tertiary: #9ca3af;  /* AA (4.5:1) */
+
+  --blog-accent: #EAAA08;         /* Piramyd amber — AA on white (4.5:1) */
+  --blog-accent-hover: #d49506;
+
+  --blog-border-subtle: #e5e7eb;
+  --blog-border-medium: #d1d5db;
+  --blog-border-strong: #9ca3af;
+
+  --blog-error: #dc2626;
+  --blog-error-bg: #fef2f2;
+  --blog-error-text: #b91c1c;
+
+  --blog-success: #059669;
+  --blog-success-bg: #ecfdf5;
+  --blog-success-text: #047857;
+
+  --blog-warning: #d97706;
+  --blog-warning-bg: #fffbeb;
+  --blog-warning-text: #b45309;
+
+  /* Dark mode (brand-aligned) */
+  
+}
+
+/* ==============================================
+   2. TYPOGRAPHY
+   ============================================== */
+
+.blog-typography {
+  /* Font families (loaded via Google Fonts) */
+  --blog-font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --blog-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Type scales (12pt base, 1.125 ratio) */
+  --blog-text-xs: 0.75rem;    /* 12px */
+  --blog-text-sm: 0.875rem;   /* 14px */
+  --blog-text-base: 1rem;     /* 16px */
+  --blog-text-lg: 1.125rem;   /* 18px */
+  --blog-text-xl: 1.25rem;    /* 20px */
+  --blog-text-2xl: 1.5rem;    /* 24px */
+  --blog-text-3xl: 1.875rem;  /* 30px */
+  --blog-text-4xl: 2.25rem;   /* 36px */
+  --blog-text-5xl: 3rem;      /* 48px */
+
+  /* Line heights */
+  --blog-leading-tight: 1.25;
+  --blog-leading-snug: 1.375;
+  --blog-leading-normal: 1.625; /* Editorial reading */
+  --blog-leading-relaxed: 1.75;
+
+  /* Font weights */
+  --blog-weight-light: 300;
+  --blog-weight-regular: 400;
+  --blog-weight-medium: 500;
+  --blog-weight-semibold: 600;
+  --blog-weight-bold: 700;
+
+  /* Sans weights */
+  --blog-sans-light: 300;
+  --blog-sans-regular: 400;
+  --blog-sans-medium: 500;
+  --blog-sans-semibold: 600;
+  --blog-sans-bold: 700;
+
+  /* Mono weights */
+  --blog-mono-light: 300;
+  --blog-mono-regular: 400;
+  --blog-mono-medium: 500;
+  --blog-mono-semibold: 600;
+  --blog-mono-bold: 700;
+}
+
+/* ==============================================
+   3. SPACING
+   ============================================== */
+
+.blog-spacing {
+  /* Core spacing scale (8pt grid) */
+  --blog-spacing-1: 0.25rem;   /* 4px */
+  --blog-spacing-2: 0.5rem;    /* 8px */
+  --blog-spacing-3: 0.75rem;   /* 12px */
+  --blog-spacing-4: 1rem;      /* 16px */
+  --blog-spacing-5: 1.25rem;   /* 20px */
+  --blog-spacing-6: 1.5rem;    /* 24px */
+  --blog-spacing-8: 2rem;      /* 32px */
+  --blog-spacing-10: 2.5rem;   /* 40px */
+  --blog-spacing-12: 3rem;     /* 48px */
+  --blog-spacing-16: 4rem;     /* 64px */
+  --blog-spacing-20: 5rem;     /* 80px */
+  --blog-spacing-24: 6rem;     /* 96px */
+  --blog-spacing-32: 8rem;     /* 128px */
+
+  /* Component-specific */
+  --blog-spacing-component: 1.5rem; /* 24px */
+  --blog-spacing-card: 1.5rem;
+  --blog-spacing-section: 3rem;
+  --blog-spacing-header-nav: 1rem;
+  --blog-spacing-footer-nav: 3rem;
+  --blog-spacing-sidebar: 2rem;
+}
+
+/* ==============================================
+   4. RADIUS (SQUIRCLES)
+   ============================================== */
+
+.blog-radius {
+  /* Apple HIG squircles (4pt to 20pt) */
+  --blog-radius-xs: 0.25rem;   /* 4px */
+  --blog-radius-sm: 0.375rem;  /* 6px */
+  --blog-radius-md: 0.5rem;    /* 8px */
+  --blog-radius-lg: 0.75rem;   /* 12px */
+  --blog-radius-xl: 1rem;      /* 16px */
+  --blog-radius-2xl: 1.25rem;  /* 20px */
+  --blog-radius-full: 9999px;
+
+  /* Component-specific */
+  --blog-radius-component: 0.5rem; /* 8px */
+  --blog-radius-card: 0.75rem;      /* 12px */
+  --blog-radius-button: 0.75rem;    /* 12px */
+  --blog-radius-input: 0.5rem;     /* 8px */
+  --blog-radius-badge: 9999px;
+}
+
+/* ==============================================
+   5. SHADOWS (DEPTH)
+   ============================================== */
+
+.blog-shadows {
+  /* Light mode */
+  --blog-shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --blog-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --blog-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+  --blog-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  --blog-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+
+  /* Dark mode */
+  
+}
+
+/* ==============================================
+   6. LAYOUT & BREAKPOINTS
+   ============================================== */
+
+.blog-layout {
+  /* Container spacing */
+  --blog-container-max: 70ch; /* Editorial line length */
+  --blog-container-gutter: 2rem; /* 32px */
+
+  /* Grid columns (8pt base) */
+  --blog-grid-cols: repeat(12, 1fr);
+
+  /* Breakpoints */
+  --breakpoint-sm: 640px;   /* Mobile */
+  --breakpoint-md: 768px;   /* Tablet */
+  --breakpoint-lg: 1024px;  /* Desktop */
+  --breakpoint-xl: 1280px;  /* Wide desktop */
+  --breakpoint-2xl: 1536px; /* Ultra-wide */
+
+  /* Component layouts */
+  --blog-layout-listing: 1fr; /* Single column */
+  --blog-layout-card: repeat(auto-fill, minmax(280px, 1fr)); /* Grid of cards */
+  --blog-layout-grid: repeat(3, 1fr); /* 3-column grid */
+}
+
+/* ==============================================
+   7. ANIMATION & TRANSITIONS
+   ============================================== */
+
+.blog-animation {
+  /* Timing functions (Apple HIG) */
+  --blog-timing-instant: 0s;
+  --blog-timing-linear: linear;
+  --blog-timing-ease: ease;
+  --blog-timing-ease-in: ease-in;
+  --blog-timing-ease-out: ease-out;
+  --blog-timing-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Durations (fast but deliberate) */
+  --blog-duration-instant: 0s;
+  --blog-duration-fast: 150ms;
+  --blog-duration-normal: 300ms;
+  --blog-duration-slow: 500ms;
+  --blog-duration-slower: 700ms;
+
+  /* Transitions */
+  --blog-transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --blog-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --blog-transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Keyframes */
+  --blog-keyframes-spin: spin;
+  --blog-keyframes-ping: ping;
+  --blog-keyframes-pulse: pulse;
+  --blog-keyframes-bounce: bounce;
+}
+
+/* ==============================================
+   8. INTERACTIONS & STATES
+   ============================================== */
+
+.blog-interactions {
+  /* Hover states */
+  --blog-hover-elevation: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+  --blog-hover-border: #9ca3af;
+
+  /* Focus states (Apple HIG) */
+  --blog-focus-ring: 0 0 0 3px rgba(234, 179, 8, 0.6); /* Amber glow */
+  --blog-focus-ring-offset: 2px;
+  --blog-focus-ring-radius: 4px;
+
+  /* Active states */
+  --blog-active-scale: 0.98;
+  --blog-active-elevation: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+
+  /* Disabled states */
+  --blog-disabled-opacity: 0.5;
+  --blog-disabled-cursor: not-allowed;
+
+  /* Loading states */
+  --blog-loading-skeleton-base: #f9fafb;
+  --blog-loading-skeleton-highlight: #e5e7eb;
+  --blog-loading-duration: 1.5s;
+}
+
+/* ==============================================
+   9. Z-INDEX
+   ============================================== */
+
+.blog-z {
+  --blog-z-base: 0;
+  --blog-z-dropdown: 10;
+  --blog-z-sticky: 20;
+  --blog-z-fixed: 30;
+  --blog-z-modal-backdrop: 40;
+  --blog-z-modal: 50;
+  --blog-z-popover: 60;
+  --blog-z-tooltip: 70;
+}
+
+/* ==============================================
+   10. PRINT STYLES
+   ============================================== */
+
+.blog-print {
+  --blog-print-bg: white;
+  --blog-print-text: black;
+  --blog-print-link: blue;
+  --blog-print-link-visited: purple;
+  --blog-print-h1: black;
+  --blog-print-h2: #333;
+  --blog-print-h3: #555;
+  --blog-print-h4: #777;
+  --blog-print-h5: #888;
+  --blog-print-h6: #999;
+  --blog-print-headings: #000;
+}
+/* ==================================================
+   BLOG STYLES
+   ==================================================
+   Editorial typography, components, and responsive layout.
+   Imports tokens.css first for design tokens.
+
+   Author: Product Designer
+   Date: 2026-10-16
+   ================================================== */
+
+
+
+/* ==============================================
+   1. RESET & BASE
+   ============================================== */
+
+.blog-reset {
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    font-size: 100%;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1rem;
+    line-height: 1.625;
+    color: #111827;
+    background-color: #ffffff;
+    min-height: 100vh;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+
+input {
+    font-family: inherit;
+    font-size: inherit;
+  }
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+  }
+}
+
+/* ==============================================
+   2. TYPOGRAPHY RE-EXPORTS (Scoped)
+   ============================================== */
+
+.blog-typography {
+  /* Headings */
+h1 {
+    font-weight: 700;
+    line-height: 1.25;
+    color: #111827;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+h2 {
+    font-weight: 700;
+    line-height: 1.25;
+    color: #111827;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+h3 {
+    font-weight: 700;
+    line-height: 1.25;
+    color: #111827;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+h4 {
+    font-weight: 700;
+    line-height: 1.25;
+    color: #111827;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+h5 {
+    font-weight: 700;
+    line-height: 1.25;
+    color: #111827;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+h6 {
+    font-weight: 700;
+    line-height: 1.25;
+    color: #111827;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  h1 { font-size: 2.25rem; }
+  h2 { font-size: 1.875rem; }
+  h3 { font-size: 1.5rem; }
+  h4 { font-size: 1.25rem; }
+  h5 { font-size: 1.125rem; }
+  h6 { font-size: 1rem; }
+
+  /* Body text */
+  p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  /* Lead paragraph */
+  .blog-lead {
+    font-size: 1.125rem;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+    color: #4b5563;
+  }
+
+  /* Code blocks */
+  code {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.875em;
+    padding: 0.125rem 0.25rem;
+    background-color: #f9fafb;
+    border-radius: 0.25rem;
+    color: #EAAA08;
+  }
+
+  pre {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.875rem;
+    line-height: 1.375;
+    padding: 1rem;
+    background-color: #f9fafb;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+  }
+
+  pre code {
+    padding: 0;
+    background: none;
+    color: inherit;
+  }
+
+  /* Blockquotes */
+  blockquote {
+    margin: 1.5rem 0;
+    padding-left: 1rem;
+    border-left: 3px solid #EAAA08;
+    color: #4b5563;
+    font-style: italic;
+  }
+
+  /* Lists */
+ul {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  /* Horizontal rule */
+  hr {
+    border: 0;
+    height: 1px;
+    background-color: #e5e7eb;
+    margin: 2rem 0;
+  }
+}
+
+/* ==============================================
+   3. LAYOUT COMPONENTS
+   ============================================== */
+
+.blog-layout {
+  /* Container */
+  .blog-container {
+    width: 100%;
+    max-width: 70ch;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  /* Grid */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.5rem;
+  }
+
+  .blog-grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .blog-grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .blog-grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+  /* Section spacing */
+  .blog-section {
+    padding: 3rem 0;
+  }
+
+  /* Header navigation */
+  .blog-header-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: var(--blog-z-sticky);
+  }
+
+  .blog-logo {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: #111827;
+  }
+
+  .blog-logo span {
+    color: #EAAA08;
+  }
+
+  .blog-nav-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .blog-nav-link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #4b5563;
+    transition: var(--blog-duration-normal) var(--blog-timing-ease-in-out);
+  }
+
+.blog-nav-link:hover {
+    color: #111827;
+  }
+.blog-nav-link:focus {
+    color: #111827;
+  }
+
+  /* Footer navigation */
+  .blog-footer-nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 3rem 0;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 3rem;
+  }
+
+  .blog-footer-link {
+    font-size: 0.875rem;
+    color: #4b5563;
+    transition: var(--blog-duration-normal) var(--blog-timing-ease-in-out);
+  }
+
+.blog-footer-link:hover {
+    color: #EAAA08;
+  }
+.blog-footer-link:focus {
+    color: #EAAA08;
+  }
+}
+
+/* ==============================================
+   4. POST CARD (LISTING)
+   ============================================== */
+
+.blog-post-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: var(--blog-duration-normal) var(--blog-timing-ease-in-out);
+  cursor: pointer;
+  height: 100%;
+}
+
+.blog-post-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  border-color: #d1d5db;
+  outline: none;
+}
+.blog-post-card:focus-within {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  border-color: #d1d5db;
+  outline: none;
+}
+
+.blog-post-card:focus-visible {
+  outline: var(--blog-focus-ring);
+  outline-offset: var(--blog-focus-ring-offset);
+}
+
+.blog-post-card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  background-color: #f9fafb;
+}
+
+.blog-post-card-content {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-post-card-meta {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.blog-post-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  line-height: 1.25;
+}
+
+.blog-post-card-excerpt {
+  font-size: 0.875rem;
+  color: #4b5563;
+  line-height: 1.375;
+  margin-bottom: 1rem;
+}
+
+.blog-post-card-footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.blog-post-card-readtime {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.blog-post-card-status {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+}
+
+.blog-post-card-status.published {
+  background-color: #ecfdf5;
+  color: #047857;
+}
+
+.blog-post-card-status.review {
+  background-color: #fffbeb;
+  color: #b45309;
+}
+
+/* ==============================================
+   5. SINGLE POST (READING)
+   ============================================== */
+
+.blog-post-header {
+  padding: 3rem 0;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 3rem;
+}
+
+.blog-post-title {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.blog-post-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.blog-post-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.blog-post-meta-item::before {
+  content: "•";
+  color: #d1d5db;
+}
+
+.blog-post-meta-item:first-child::before {
+  content: "";
+}
+
+.blog-post-meta-item a {
+  color: #EAAA08;
+}
+
+.blog-post-content {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.625;
+  color: #111827;
+  max-width: 70ch;
+  margin: 0 auto;
+}
+
+.blog-post-content p {
+  margin-bottom: 1.5rem;
+}
+
+.blog-post-content h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.blog-post-content h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.blog-post-content ul {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+.blog-post-content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.blog-post-content li {
+  margin-bottom: 0.5rem;
+}
+
+.blog-post-content code {
+  background-color: #f9fafb;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.875em;
+  color: #EAAA08;
+}
+
+.blog-post-content pre {
+  padding: 1.5rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+.blog-post-content blockquote {
+  padding-left: 1.5rem;
+  border-left: 4px solid #EAAA08;
+  font-size: 1.25rem;
+  color: #4b5563;
+  font-style: italic;
+}
+
+.blog-post-content a {
+  color: #EAAA08;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.blog-post-content a:hover {
+  color: #d49506;
+}
+
+.blog-post-content a:focus-visible {
+  outline: var(--blog-focus-ring);
+  outline-offset: var(--blog-focus-ring-offset);
+}
+
+.blog-post-content hr {
+  margin: 3rem 0;
+}
+
+.blog-post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.blog-post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+}
+
+.blog-post-content th {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+.blog-post-content td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.blog-post-content th {
+  font-weight: 600;
+  color: #111827;
+  background-color: #f9fafb;
+}
+
+.blog-post-content pre code {
+  padding: 0;
+  background: none;
+  color: inherit;
+}
+
+.blog-post-backlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin-bottom: 1.5rem;
+  transition: var(--blog-duration-normal) var(--blog-timing-ease-in-out);
+}
+
+.blog-post-backlink:hover {
+  color: #EAAA08;
+}
+
+.blog-post-backlink:focus-visible {
+  outline: var(--blog-focus-ring);
+  outline-offset: var(--blog-focus-ring-offset);
+}
+
+.blog-post-footer {
+  margin-top: 3rem;
+  padding-top: 3rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.blog-post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.blog-post-tag {
+  font-size: 0.75rem;
+  color: #4b5563;
+  padding: 0.25rem 0.5rem;
+  background-color: #f9fafb;
+  border-radius: 0.375rem;
+  transition: var(--blog-duration-normal) var(--blog-timing-ease-in-out);
+}
+
+.blog-post-tag:hover {
+  background-color: #e5e7eb;
+  color: #9ca3af;
+}
+
+.blog-post-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.blog-post-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  transition: var(--blog-duration-normal) var(--blog-timing-ease-in-out);
+}
+
+.blog-post-action.primary {
+  background-color: #EAAA08;
+  color: #000;
+  font-weight: 600;
+}
+
+.blog-post-action.primary:hover {
+  background-color: #d49506;
+}
+
+.blog-post-action.secondary {
+  background-color: #f9fafb;
+  color: #111827;
+}
+
+.blog-post-action.secondary:hover {
+  background-color: #e5e7eb;
+}
+
+.blog-post-action:focus-visible {
+  outline: var(--blog-focus-ring);
+  outline-offset: var(--blog-focus-ring-offset);
+}
+
+/* ==============================================
+   6. STATES (Empty, Review, Error)
+   ============================================== */
+
+.blog-state {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.blog-state-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.blog-state-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.blog-state-description {
+  font-size: 1.125rem;
+  color: #4b5563;
+  margin-bottom: 1.5rem;
+  max-width: 60ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.blog-state-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  transition: var(--blog-duration-normal) var(--blog-timing-ease-in-out);
+}
+
+.blog-state-button.primary {
+  background-color: #EAAA08;
+  color: #000;
+}
+
+.blog-state-button.primary:hover {
+  background-color: #d49506;
+}
+
+.blog-state-button.secondary {
+  background-color: #f9fafb;
+  color: #111827;
+  border: 1px solid #e5e7eb;
+}
+
+.blog-state-button.secondary:hover {
+  background-color: #e5e7eb;
+}
+
+.blog-state-button:focus-visible {
+  outline: var(--blog-focus-ring);
+  outline-offset: var(--blog-focus-ring-offset);
+}
+
+/* Empty state */
+.blog-state-empty .blog-state-icon {
+  color: #9ca3af;
+}
+
+.blog-state-empty .blog-state-title {
+  color: #111827;
+}
+
+.blog-state-empty .blog-state-description {
+  color: #4b5563;
+}
+
+/* Review state */
+.blog-state-review .blog-state-icon {
+  color: #d97706;
+}
+
+.blog-state-review .blog-state-title {
+  color: #b45309;
+}
+
+.blog-state-review .blog-state-description {
+  color: #4b5563;
+}
+
+/* Error state */
+.blog-state-error .blog-state-icon {
+  color: #dc2626;
+}
+
+.blog-state-error .blog-state-title {
+  color: #b91c1c;
+}
+
+.blog-state-error .blog-state-description {
+  color: #4b5563;
+}
+
+/* ==============================================
+   7. LOADING SKELETON
+   ============================================== */
+
+.blog-skeleton {
+  background-color: var(--blog-loading-skeleton-base);
+  border-radius: 0.375rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.blog-skeleton::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--blog-loading-skeleton-highlight),
+    transparent
+  );
+  animation: blog-skeleton-shimmer var(--blog-loading-duration) infinite;
+}
+
+@keyframes blog-skeleton-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.blog-skeleton-text {
+  height: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.blog-skeleton-text--short { width: 60%; }
+.blog-skeleton-text--medium { width: 80%; }
+.blog-skeleton-text--long { width: 100%; }
+.blog-skeleton-title { height: 1rem; width: 70%; }
+
+/* ==============================================
+   8. COMPONENTS (Buttons, Badges, Inputs)
+   ============================================== */
+
+/* Buttons */
+.blog-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  transition: var(--blog-duration-normal) var(--blog-timing-ease-in-out);
+  cursor: pointer;
+}
+
+.blog-btn-primary {
+  background-color: #EAAA08;
+  color: #000;
+}
+
+.blog-btn-primary:hover {
+  background-color: #d49506;
+}
+
+.blog-btn-secondary {
+  background-color: #f9fafb;
+  color: #111827;
+  border: 1px solid #e5e7eb;
+}
+
+.blog-btn-secondary:hover {
+  background-color: #e5e7eb;
+}
+
+.blog-btn:disabled {
+  opacity: var(--blog-disabled-opacity);
+  cursor: var(--blog-disabled-cursor);
+}
+.blog-btn[aria-disabled="true"] {
+  opacity: var(--blog-disabled-opacity);
+  cursor: var(--blog-disabled-cursor);
+}
+
+.blog-btn:focus-visible {
+  outline: var(--blog-focus-ring);
+  outline-offset: var(--blog-focus-ring-offset);
+}
+
+/* Badges */
+.blog-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.blog-badge.primary {
+  background-color: #EAAA08;
+  color: #000;
+}
+
+.blog-badge.success {
+  background-color: #ecfdf5;
+  color: #047857;
+}
+
+.blog-badge.warning {
+  background-color: #fffbeb;
+  color: #b45309;
+}
+
+.blog-badge.error {
+  background-color: #fef2f2;
+  color: #b91c1c;
+}
+
+/* Inputs */
+.blog-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+  color: #111827;
+  transition: var(--blog-duration-normal) var(--blog-timing-ease-in-out);
+}
+
+.blog-input:focus {
+  outline: none;
+  border-color: #EAAA08;
+  box-shadow: var(--blog-focus-ring);
+  box-shadow-color: #EAAA08;
+}
+
+.blog-input:disabled {
+  opacity: var(--blog-disabled-opacity);
+  cursor: var(--blog-disabled-cursor);
+}
+
+/* ==============================================
+   9. RESPONSIVE BREAKPOINTS
+   ============================================== */
+
+@media (max-width: 1023px) {
+  .blog-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .blog-post-content {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 639px) {
+.blog-grid-2 {
+    grid-template-columns: 1fr;
+  }
+.blog-grid-3 {
+    grid-template-columns: 1fr;
+  }
+.blog-grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-nav-links {
+    display: none;
+  }
+
+  .blog-post-title {
+    font-size: 1.5rem;
+  }
+
+  .blog-post-content {
+    font-size: 1rem;
+  }
+
+  .blog-post-actions {
+    flex-direction: column;
+  }
+
+  .blog-post-action {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ==============================================
+   10. PRINT STYLES
+   ============================================== */
+
+@media print {
+  body {
+    background-color: var(--blog-print-bg);
+    color: var(--blog-print-text);
+  }
+
+  a {
+    color: var(--blog-print-link);
+    text-decoration: underline;
+  }
+
+  a:visited {
+    color: var(--blog-print-link-visited);
+  }
+
+h1 {
+    color: var(--blog-print-headings);
+  }
+h2 {
+    color: var(--blog-print-headings);
+  }
+h3 {
+    color: var(--blog-print-headings);
+  }
+h4 {
+    color: var(--blog-print-headings);
+  }
+h5 {
+    color: var(--blog-print-headings);
+  }
+h6 {
+    color: var(--blog-print-headings);
+  }
+
+  h1 { color: var(--blog-print-h1); }
+  h2 { color: var(--blog-print-h2); }
+  h3 { color: var(--blog-print-h3); }
+  h4 { color: var(--blog-print-h4); }
+  h5 { color: var(--blog-print-h5); }
+  h6 { color: var(--blog-print-h6); }
+
+  blockquote {
+    border-left-color: #EAAA08;
+  }
+
+.blog-header-nav {
+    display: none;
+  }
+.blog-footer-nav {
+    display: none;
+  }
+.blog-post-actions {
+    display: none;
+  }
+
+  .post-card-image {
+    display: none;
+  }
+
+  .blog-container {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .blog-post-content {
+    max-width: 100%;
+  }
+}
+/* ==================================================
+   BLOG — COMPONENTES ADICIONAIS
+   ==================================================
+   Complementa blog.css com os componentes usados nas
+   vistas: skip link, toggle de tema, destaque, hero da
+   listagem, espécimes, spinners, banner de revisão,
+   campos de formulário e bloco invertido de tema escuro.
+
+   Author: Product Designer
+   Date: 2026-10-16
+   ================================================== */
+
+
+
+/* ==============================================
+   1. SKIP LINK (Acessibilidade)
+   ============================================== */
+
+.blog-skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: var(--blog-z-tooltip);
+  padding: 0.75rem 1rem;
+  background-color: #EAAA08;
+  color: #000;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: top var(--blog-duration-fast) var(--blog-timing-ease-in-out);
+}
+
+.blog-skip-link:focus {
+  top: 1rem;
+  outline: var(--blog-focus-ring);
+  outline-offset: var(--blog-focus-ring-offset);
+}
+
+/* ==============================================
+   2. TOGGLE DE TEMA
+   ============================================== */
+
+.blog-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  border: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+  color: #4b5563;
+  font-size: 1rem;
+  transition: var(--blog-duration-normal) var(--blog-timing-ease-in-out);
+}
+
+.blog-theme-toggle:hover {
+  color: #111827;
+  border-color: #d1d5db;
+}
+
+.blog-theme-toggle:focus-visible {
+  outline: var(--blog-focus-ring);
+  outline-offset: var(--blog-focus-ring-offset);
+}
+
+/* ==============================================
+   3. HERO DA LISTAGEM
+   ============================================== */
+
+.blog-listing-hero {
+  padding: 5rem 0 3rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.blog-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #EAAA08;
+  margin-bottom: 0.75rem;
+}
+
+.blog-listing-title {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 1.25rem;
+  max-width: 22ch;
+}
+
+.blog-listing-subtitle {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: #4b5563;
+  max-width: 58ch;
+  margin: 0;
+}
+
+.blog-section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  margin: 0 0 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* ==============================================
+   4. DESTAQUE (ARTIGO MAIS RECENTE)
+   ============================================== */
+
+.blog-listing-featured {
+  padding: 4rem 0;
+}
+.blog-listing {
+  padding: 4rem 0;
+}
+
+.blog-featured-card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 1.25rem;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: var(--blog-duration-normal) var(--blog-timing-ease-in-out);
+}
+
+.blog-featured-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: linear-gradient(180deg, #EAAA08, #d49506);
+}
+
+.blog-featured-card:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  border-color: #d1d5db;
+}
+
+.blog-featured-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 1rem 0 1rem;
+  max-width: 28ch;
+}
+
+.blog-featured-title a {
+  transition: var(--blog-duration-normal) var(--blog-timing-ease-in-out);
+}
+
+.blog-featured-title a:hover {
+  color: #d49506;
+}
+
+.blog-featured-title a:focus-visible {
+  outline: var(--blog-focus-ring);
+  outline-offset: var(--blog-focus-ring-offset);
+  border-radius: 0.25rem;
+}
+
+.blog-featured-excerpt {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: #4b5563;
+  max-width: 62ch;
+  margin-bottom: 2rem;
+}
+
+.blog-featured-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.blog-read-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #111827;
+  transition: var(--blog-duration-normal) var(--blog-timing-ease-in-out);
+}
+
+.blog-read-link:hover {
+  color: #d49506;
+  gap: 0.75rem;
+}
+
+.blog-read-link:focus-visible {
+  outline: var(--blog-focus-ring);
+  outline-offset: var(--blog-focus-ring-offset);
+  border-radius: 0.25rem;
+}
+
+/* ==============================================
+   5. GRELHA DE ARTIGOS
+   ============================================== */
+
+.blog-post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.blog-post-card-title a {
+  transition: var(--blog-duration-normal) var(--blog-timing-ease-in-out);
+}
+
+.blog-post-card-title a:hover {
+  color: #d49506;
+}
+
+.blog-post-card-title a:focus-visible {
+  outline: var(--blog-focus-ring);
+  outline-offset: var(--blog-focus-ring-offset);
+  border-radius: 0.25rem;
+}
+
+.blog-post-card-topic {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #9ca3af;
+  letter-spacing: 0.04em;
+}
+
+/* ==============================================
+   6. RODAPÉ DO SITE
+   ============================================== */
+
+.blog-site-footer {
+  margin-top: 5rem;
+  padding: 3rem 0 2rem;
+  border-top: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+}
+
+.blog-footer-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.blog-footer-mark {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.blog-footer-mark span {
+  color: #EAAA08;
+}
+
+.blog-footer-line {
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin: 0;
+}
+
+.blog-site-footer .blog-footer-nav {
+  border-top: none;
+  margin-top: 0;
+  padding: 0;
+  gap: 1.5rem;
+}
+
+.blog-footer-note {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+/* ==============================================
+   7. CABEÇALHO E AUTOR DO ARTIGO
+   ============================================== */
+
+.blog-post-header {
+  padding: 5rem 0 2.5rem;
+}
+
+.blog-post-header .blog-post-meta {
+  margin-bottom: 1.25rem;
+  font-size: 0.875rem;
+  color: #4b5563;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.blog-post-author {
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.blog-post-author a {
+  color: #111827;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.blog-post-author a:hover {
+  color: #d49506;
+}
+
+/* Corpo do artigo — separador do cabeçalho */
+.blog-post-content {
+  padding-bottom: 3rem;
+}
+
+/* ==============================================
+   8. CAMPOS DE FORMULÁRIO
+   ============================================== */
+
+.blog-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 420px;
+}
+
+.blog-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.blog-input.is-focused {
+  border-color: #EAAA08;
+  box-shadow: var(--blog-focus-ring);
+}
+
+.blog-input.is-invalid {
+  border-color: #dc2626;
+}
+
+.blog-input.is-invalid:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.25);
+}
+
+.blog-field-error {
+  font-size: 0.875rem;
+  color: #b91c1c;
+  margin: 0;
+}
+
+.blog-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==============================================
+   9. SPINNER
+   ============================================== */
+
+.blog-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 9999px;
+  animation: blog-spin 700ms linear infinite;
+  flex: none;
+}
+
+.blog-spinner--lg { width: 32px; height: 32px; border-width: 3px; }
+.blog-spinner--sm { width: 12px; height: 12px; border-width: 1.5px; }
+
+@keyframes blog-spin {
+  to { transform: rotate(360deg); }
+}
+
+.blog-btn.is-loading {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* ==============================================
+   10. ESPÉCIMES (Catálogo de estados)
+   ============================================== */
+
+.blog-specimen-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.blog-specimen-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.blog-demo-note {
+  font-size: 0.875rem;
+  color: #4b5563;
+  line-height: 1.375;
+  max-width: 68ch;
+  margin: 0.5rem 0 2rem;
+  padding-left: 1rem;
+  border-left: 2px solid #d1d5db;
+}
+
+/* ==============================================
+   11. FORMULÁRIO DE ESTADO (vazio)
+   ============================================== */
+
+.blog-state-form {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 460px;
+  margin: 0 auto;
+}
+
+.blog-state-form .blog-input {
+  flex: 1 1 220px;
+  text-align: left;
+}
+
+.blog-state-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ==============================================
+   12. BANNER DE REVISÃO (artigo)
+   ============================================== */
+
+.blog-review-banner {
+  max-width: 70ch;
+  margin: 0 auto 2rem;
+  padding: 1.5rem;
+  background-color: #fffbeb;
+  border: 1px solid #e5e7eb;
+  border-left: 4px solid #d97706;
+  border-radius: 0.75rem;
+}
+
+.blog-review-banner p {
+  margin: 0.75rem 0;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.blog-review-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #b45309;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ==============================================
+   13. CONTROLOS DE DEMONSTRAÇÃO
+   ============================================== */
+
+.blog-demo-controls {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--blog-z-fixed);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem;
+  background-color: rgba(17, 24, 39, 0.92);
+  backdrop-filter: blur(12px);
+  border-radius: 9999px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+}
+
+.blog-demo-controls-label {
+  font-size: 0.75rem;
+  color: #d1d5db;
+  padding: 0 0.75rem;
+}
+
+.blog-demo-btn {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #d1d5db;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  transition: var(--blog-duration-fast) var(--blog-timing-ease-in-out);
+}
+
+.blog-demo-btn:hover {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.blog-demo-btn.is-active {
+  background-color: #EAAA08;
+  color: #000;
+  font-weight: 600;
+}
+
+.blog-demo-btn:focus-visible {
+  outline: var(--blog-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ==============================================
+   14. TEMA ESCURO (Bloco invertido)
+   ============================================== */
+
+.blog-invert {
+  background-color: #0A0A0A;
+  color: #ffffff;
+}
+
+.blog-invert .blog-section-label {
+  color: #a1a1aa;
+  border-bottom-color: #27272a;
+}
+
+.blog-demo-note--invert {
+  color: #a1a1aa;
+  border-left-color: #3f3f46;
+}
+
+.blog-demo-note--invert code {
+  background-color: #1f1f1f;
+  color: #EAAA08;
+}
+
+.blog-invert-text {
+  max-width: 62ch;
+  margin-top: 2rem;
+}
+
+.blog-invert-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin: 0 0 1rem;
+}
+
+.blog-invert-body {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: #a1a1aa;
+  margin: 0;
+}
+
+.blog-invert .blog-badge.success {
+  background-color: #022c22;
+  color: #4ade80;
+}
+
+.blog-invert .blog-badge.warning {
+  background-color: #422006;
+  color: #fbbf24;
+}
+
+.blog-invert .blog-badge.primary {
+  background-color: #EAAA08;
+  color: #000;
+}
+
+.blog-invert .blog-btn-secondary {
+  background-color: #1f1f1f;
+  color: #ffffff;
+  border-color: #3f3f46;
+}
+
+.blog-invert .blog-btn-secondary:hover {
+  background-color: #27272a;
+}
+
+/* ==============================================
+   15. RESPONSIVO
+   ============================================== */
+
+@media (max-width: 1023px) {
+  .blog-listing-title { font-size: 2.25rem; }
+  .blog-featured-title { font-size: 1.875rem; }
+  .blog-featured-card { padding: 2rem; }
+}
+
+@media (max-width: 639px) {
+  .blog-listing-hero { padding: 3rem 0 2rem; }
+  .blog-listing-title { font-size: 1.875rem; }
+  .blog-listing-subtitle { font-size: 1rem; }
+
+  .blog-featured-card { padding: 1.5rem; border-radius: 1rem; }
+  .blog-featured-title { font-size: 1.5rem; }
+  .blog-featured-excerpt { font-size: 1rem; }
+  .blog-featured-footer { flex-direction: column; align-items: flex-start; }
+
+  .blog-post-grid { grid-template-columns: 1fr; }
+
+  .blog-post-header { padding: 3rem 0 2rem; }
+
+  .blog-create-post-header { padding: 5rem 0 2.5rem; }
+
+  .blog-footer-grid { flex-direction: column; }
+  .blog-site-footer .blog-footer-nav { flex-wrap: wrap; gap: 1rem; }
+
+  .blog-demo-controls {
+    left: 1rem;
+    right: 1rem;
+    transform: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 1rem;
+  }
+
+  .blog-demo-controls-label { display: none; }
+
+  .blog-featured-card::before { width: 3px; }
+}
+
+@media (max-width: 380px) {
+  .blog-demo-controls { display: none; }
+}
+
+/* ==============================================
+   16. IMPRESSÃO
+   ============================================== */
+
+@media print {
+.blog-demo-controls {
+    display: none !important;
+  }
+.blog-skip-link {
+    display: none !important;
+  }
+.blog-theme-toggle {
+    display: none !important;
+  }
+.blog-state-demo {
+    display: none !important;
+  }
+
+  .blog-featured-card {
+    border: 1px solid #ddd;
+    box-shadow: none;
+  }
+
+  .blog-featured-card::before { display: none; }
+}
+
+  </style>
+  <script defer src="/theme.js"></script>
+</head>
+<body class="blog-reset">
+  <a href="#conteudo" class="blog-skip-link">Saltar para o conteúdo</a>
+  <header class="blog-header-nav">
+    <a href="index.html" class="blog-logo" aria-label="Notícias IA — página inicial">Notícias<span>IA</span></a>
+    <nav class="blog-nav-links" aria-label="Navegação principal">
+      <a href="index.html" class="blog-nav-link" aria-current="page">Artigos</a>
+      <a href="#" class="blog-nav-link">Arquivo</a>
+      <a href="#" class="blog-nav-link">Sobre</a>
+    </nav>
+    <button type="button" class="blog-theme-toggle" aria-label="Alternar tema claro e escuro">
+      <span aria-hidden="true">◐</span>
+    </button>
+  </header>
+  <main id="conteudo">
+    <article class="blog-post-header">
+      <div class="blog-container">
+        <header>
+          <div class="blog-post-meta">
+            <time datetime="<!--DATE-->"><!--HUMANDATE--></time>
+            <span aria-hidden="true">·</span>
+            <span>2 min de leitura</span>
+            <span aria-hidden="true">·</span>
+            <span class="blog-badge success">Publicado</span>
+          </div>
+          <h1 class="blog-post-title"><!--TITLE--></h1>
+        </header>
+        <footer>
+          <p class="blog-post-author">
+            Por <a href="#">Tivra</a> · Redacção assistida por IA, revista por humano
+          </p>
+        </footer>
+      </div>
+    </article>
+    
