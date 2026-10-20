@@ -1,46 +1,59 @@
-# Blog de Notícias IA — código-fonte
+# Blog de notícias IA
 
-Código-fonte do blog **Notícias IA**, publicado em
-<https://noticias-ia-cndd-sites.tivrai.dev>.
+Blog de interpretação de notícias de IA para quem constrói produto. Stack estática
+própria, custo zero mensal, sem lock-in.
 
-> **Nota de reconstituição (2026-10-17).** O `/workspace` foi apagado na recriação da
-> máquina (18/10) e este projecto não era repo git — o código-fonte perdeu-se. Este
-> repositório foi reconstituído a partir do HTML publicado (única fonte sobrevivente),
-> conforme TASK-2026-10-17-028. O site no ar **não foi alterado**.
-
-## Stack
-
-Estático: **Markdown → `scripts/build.py` → `dist/` → `tivra-publish`**.
-
-Decisão registada em `devops/adr-stack-publicacao.md` (ADR, custo $0/mês).
+**Site publicado:** https://noticias-ia-cndd-sites.tivrai.dev
 
 ## Estrutura
 
 ```
-posts/              7 posts em Markdown (fonte editorial)
-scripts/build.py    gerador estático (Markdown → HTML)
-scripts/deploy.sh   build + verificações + publicação
-docs/               guias de reconstituição e ferramentas
-devops/             ADR da stack de publicação
-seguranca/          relatório de segurança do build
+posts/              7 posts em Markdown (fonte de verdade)
+templates/          templates HTML/CSS recuperados do site publicado
+assets/             favicon.svg, theme.js
+scripts/build.py    Markdown -> dist/ (HTML estático)
+scripts/deploy.sh   build + verificação + envio para aprovação (tivra-publish)
+scripts/backup.sh   backup diário (tarball local + push git)
+scripts/extract_posts.py  ferramenta de reconstituição (não faz parte do build)
+docs/devops/        ADR e documentação de infraestrutura
 dist/               saída do build (não versionada)
 ```
 
-## Uso
+## Build
 
 ```bash
-# Gerar o site
-python3 scripts/build.py
-
-# Publicar (requer tivra-publish e aprovação)
-./scripts/deploy.sh
+pip install markdown
+python3 scripts/build.py           # gera dist/
+python3 scripts/build.py --check   # compara dist/ com o site live
 ```
 
-## Estado do conteúdo
+O build reproduz o site publicado byte a byte (verificado em 18/10/2026).
 
-Os 7 posts em `posts/` foram extraídos do HTML publicado. O site live ainda contém os
-**42 marcadores `[confirmar]`** e ~400–500 palavras por post — é a versão anterior às
-correcções de QA. A versão corrigida (513–597 palavras, 0 marcadores), aprovada e
-entregue em TASK-2026-10-16-012, **perdeu-se no apagão** e não está no site live.
+## Deploy
 
-Ver `docs/diferencas-build-local-live.md` para a comparação build local vs. live.
+```bash
+./scripts/deploy.sh          # build + verificação + envio para aprovação
+./scripts/deploy.sh --check  # só verifica
+```
+
+Nada é publicado sem aprovação do dono (gate 3 do Builders).
+
+## Backup
+
+`scripts/backup.sh` corre diariamente às 03:15 (cron) e faz:
+1. tarball datado em `/workspace/backups/builders-blog/` (retém 14 dias);
+2. commit + push para o GitHub (backup off-site).
+
+O disco local não é backup fiável — o push para o GitHub é o que garante a recuperação.
+
+## Segurança
+
+- Sem execução de código no servidor (estático).
+- CSP estrito (`default-src 'self'`).
+- Sem segredos no repo.
+- Checklist de segurança: `seguranca/relatorio-seguranca-blog-ia.md`.
+
+## Contexto
+
+- ADR: `docs/devops/adr-stack-publicacao.md`
+- Reconstituição após o apagão de 17/10: `docs/devops/reconstituicao.md`

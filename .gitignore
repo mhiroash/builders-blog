@@ -1,14 +1,4 @@
-# Build output
 dist/
-
-# Reconstituição (artefactos temporários)
-dist-live/
-reconstituicao/
-
-# Python
 __pycache__/
 *.pyc
-
-# Sistema
 .DS_Store
-*.swp
