@@ -80,9 +80,9 @@
       "infraestrutura"
     ]
   },
-  "uma-chave-dezanove-fornecedores": {
-    "title": "Uma chave, dezanove fornecedores: o que a agregação de modelos resolve e o que esconde",
-    "excerpt": "Uma chave para dezanove fornecedores é uma linha de código. É também um único ponto onde tudo pode mudar de preço.",
+  "uma-chave-muitos-fornecedores": {
+    "title": "Uma chave, muitos fornecedores: o que a agregação de modelos resolve e o que esconde",
+    "excerpt": "Uma chave para muitos fornecedores é uma linha de código. É também um único ponto onde tudo pode mudar de preço.",
     "date": "2026-10-16",
     "topics": [
       "gateways",
