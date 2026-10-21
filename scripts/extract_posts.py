@@ -20,7 +20,7 @@ SLUGS = [
     "ferramentas-de-agente",
     "modelos-abertos-vs-fronteira",
     "soberania-de-dados",
-    "uma-chave-dezanove-fornecedores",
+    "uma-chave-muitos-fornecedores",
 ]
 
 INLINE = [
