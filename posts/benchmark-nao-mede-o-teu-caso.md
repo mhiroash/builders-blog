@@ -14,7 +14,7 @@ _O número que aparece na manchete foi medido num conjunto que provavelmente nã
 
 Os cartões de modelo passaram a ser material de marketing. Cada lançamento vem com uma tabela, e cada tabela tem um número em negrito. As equipas começaram a escolher por essa tabela.
 
-O problema não é os números serem falsos. É serem respostas a perguntas que o fornecedor escolheu. Um benchmark mede o que o seu autor decidiu medir, no conjunto que decidiu usar. **[confirmar benchmark, versão e data]**
+O problema não é os números serem falsos. É serem respostas a perguntas que o fornecedor escolheu. Um benchmark mede o que o seu autor decidiu medir, no conjunto que decidiu usar. O relatório *Context Rot* da Chroma (14 de Julho de 2025) teve de inventar um conjunto novo — 18 modelos, variantes semânticas do Needle-in-a-Haystack — só para responder à pergunta. O número mudou porque o conjunto mudou.
 
 ### O que muda para quem constrói
 
@@ -30,9 +30,9 @@ O problema não é os números serem falsos. É serem respostas a perguntas que 
 
 Um benchmark público é uma prova sobre o trabalho do autor, não sobre o teu caso. Isso não o invalida — só limita o que podes concluir.
 
-Não está confirmado que exista um benchmark público que cubra tarefas de agente com ferramentas de forma fiável. **[confirmar benchmark, versão e data]** É uma área onde a medição ainda é fraca.
+O que não existe é um benchmark que decida por ti. O *Intelligence Index v4.3.2* da Artificial Analysis junta dez avaliações — Terminal-Bench 4.0, SciCode, AutomationBench-AA — e o METR mede horizonte de tarefa; os dois dizem o que o autor escolheu medir. Nenhum mede o teu agente com as tuas ferramentas. É uma área com medição, mas não com resposta.
 
-O nosso método interno mede latência e falha por fornecedor na Piramyd, produto nosso. É útil para nós e não é comparável com o de outra equipa — **[confirmar número verificado]**.
+O nosso método interno mede latência e falha por fornecedor na Piramyd, produto nosso. É útil para nós e não é comparável com o de outra equipa.
 
 ### Fecho
 
@@ -40,6 +40,6 @@ Um benchmark é uma prova sobre o trabalho do autor. A tua prova é a que corres
 
 ### Fontes
 
-- Ficha técnica de um benchmark público de referência, com o que mede e o que exclui — **[confirmar benchmark, versão e data]**
-- Cartão de modelo de um fornecedor que cita esse benchmark, e a forma exacta como o cita — **[confirmar transcrição e data]**
-- Método próprio de medição de latência e falha por fornecedor (Piramyd, produto nosso) — **[confirmar número verificado]**
+- Artificial Analysis, Intelligence Index v4.3.2 — dez avaliações nomeadas: Terminal-Bench 4.0, SciCode, AutomationBench-AA, GDPval-AA v2.1, AA-Briefcase v1.1, entre outras. https://artificialanalysis.ai/models (consultado 20/10/2026)
+- Chroma, Context Rot — Technical Report, 14 de Julho de 2025; 18 modelos avaliados. https://www.trychroma.com/research/context-rot (consultado 20/10/2026)
+- Método próprio de medição de latência e falha por fornecedor (Piramyd, produto nosso) — não publicado

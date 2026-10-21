@@ -14,7 +14,7 @@ _O agente acerta em nove passos de dez. A tarefa tem vinte. Faz as contas antes 
 
 Tarefas de longa duração passaram de demonstração a promessa de produto. Agentes que correm dezenas de passos, chamam ferramentas, leem ficheiros e voltam a decidir estão a ser postos em produção.
 
-O discurso público mede-os por passo. É uma métrica conveniente, porque cada passo isolado parece fiável. O que mudou este ano é que já há tarefas longas suficientes para a aritmética se notar. **[confirmar benchmark público de tarefas longas e data]**
+O discurso público mede-os por passo. É uma métrica conveniente, porque cada passo isolado parece fiável. O que mudou este ano é que já há tarefas longas suficientes para a aritmética se notar. O METR mede isto desde 2025: o tempo humano de tarefa em que um agente acerta metade das vezes dobra a cada sete meses, e o próprio METR atribui o ganho à fiabilidade e à recuperação de erros. A página, actualizada a 8 de Setembro de 2026, já mede horizonte de 16 horas — e avisa que acima disso a sua suite não é fiável.
 
 ### O que muda para quem constrói
 
@@ -26,7 +26,7 @@ O discurso público mede-os por passo. É uma métrica conveniente, porque cada 
 
 ### O que não está provado
 
-Os benchmarks de tarefas longas medem conjuntos controlados. Nenhum inclui as tuas ferramentas, os teus dados ou o teu pior dia. **[confirmar benchmark e data]**
+Os benchmarks de tarefas longas medem conjuntos controlados. Nenhum inclui as tuas ferramentas, os teus dados ou o teu pior dia. O METR mede software, com tarefas que ele escolheu, e admite-o: acima de 16 horas a suite deles não é fiável, e alguns modelos nunca foram medidos.
 
 Um caso próprio, declarado como tal: no nosso sistema em produção, o padrão `stream_retries_exhausted` e `all_provider_keys_failed` aparece quando as tentativas se esgotam sem sucesso. É o comportamento esperado de um sistema com limites — e mostra que o limite existe, não que o desenho esteja errado.
 
@@ -38,6 +38,9 @@ A fiabilidade de um agente não é a média dos passos, é o produto deles.
 
 ### Fontes
 
-- Benchmark público de tarefas longas com agentes, com taxa de sucesso completa vs. por passo — **[confirmar benchmark e data]**
+- METR, Time Horizon 1.1 — horizontes de 50% e 80% em mais de cem tarefas de software; página actualizada a 8 de Setembro de 2026. https://metr.org/time-horizons/ (consultado 20/10/2026)
+- Measuring AI Ability to Complete Long Software Tasks, arXiv:2503.14499 (18/03/2025). https://arxiv.org/abs/2503.14499 (consultado 20/10/2026)
 - Relatório próprio: relatório interno da nossa operação (não publicado) documenta `stream_retries_exhausted` e `all_provider_keys_failed` — exemplo nosso, marcado como tal
-- Documentação do fornecedor sobre limites de passos e execução — **[confirmar por fornecedor]**
+- OpenHands SDK — política de confirmação por acção (AlwaysConfirm, NeverConfirm, ConfirmRisky) e rejeição de acções pendentes. https://docs.openhands.dev/sdk/guides/security (consultado 20/10/2026)
+- Replit Agent — Plan mode e checkpoints com rollback. https://docs.replit.com/features/agent/overview (consultado 20/10/2026)
+- DeepSeek — limite de concorrência por modelo (2500 pedidos em deepseek-flash; 500 em deepseek-v4-pro) e saída máxima de 384K tokens. https://api-docs.deepseek.com/quick_start/pricing (consultado 20/10/2026)
